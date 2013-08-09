@@ -1,0 +1,13 @@
+This directory contains a test to exercise libz80 using the test suite
+from FUSE.
+
+"make" will create and run the test, comparing the expected and actual
+output using diff.  A successful run will show no diff output.
+
+The directory fuse_files contains files from FUSE.  If FUSE releases a
+newer version of its test suite, copy the updated tests.in and
+tests.expected files into fuse_files.
+
+We do not check the order or timing of memory accesses, nor the timing
+of i/o accesses.  The overall timing of each instruction sequence is
+still checked.
