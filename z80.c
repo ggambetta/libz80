@@ -298,7 +298,7 @@ static int condition(Z80Context* ctx, Z80Condition cond)
 		return GETFLAG(F_S);
 	
 	if (cond == C_P)
-		return !GETFLAG(F_S | F_Z);
+		return !GETFLAG(F_S);
 		
 	if (cond == C_PE)
 		return GETFLAG(F_PV);
