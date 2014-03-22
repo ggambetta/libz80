@@ -105,10 +105,11 @@ void fixName (char* opc, char* name)
 /** Removes trailing CR and LF. */
 void trim (char* s)
 {
-	while (*s++)
+	while (*s)
 	{
 		if ((*s == 0x0D) || (*s == 0x0A))	
 			*s = 0;
+		s++;
 	}
 }
 
