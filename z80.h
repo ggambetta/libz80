@@ -26,6 +26,13 @@
 #ifndef _Z80_H_
 #define _Z80_H_
 
+/* If this file is included inside a C++ program, use explicit C linkage for the following functions
+ * to avoid name mangling and liker issues
+ */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "stdio.h"
 
 typedef unsigned short ushort;
@@ -162,5 +169,8 @@ void Z80INT (Z80Context* ctx, byte value);
 /** Generates a non-maskable interrupt. */
 void Z80NMI (Z80Context* ctx);
 
+#ifdef __cplusplus
+} /*close extern "C" block*/
+#endif
 
 #endif
