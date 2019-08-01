@@ -33,7 +33,7 @@
 extern "C" {
 #endif
 
-#include "stdio.h"
+#include <stdio.h>
 
 typedef unsigned short ushort;
 typedef unsigned char byte;
