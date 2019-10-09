@@ -47,7 +47,7 @@
  * For example, ADD and ADC are similar in syntax and operation - the difference is that ADC takes the carry flag
  * into account.
  *
- * So we define a general operation doArithmetic(...) which accepts a boolean parameter specifying wheter to do
+ * So we define a general operation doArithmetic(...) which accepts a boolean parameter specifying whether to do
  * a Carry-operation or not. Then, when we parse, we can say
  *
  * (ADD|ADC) ....
