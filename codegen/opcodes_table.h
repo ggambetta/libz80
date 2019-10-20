@@ -1,13 +1,13 @@
-static struct Z80OpcodeTable opcodes_main;
-static struct Z80OpcodeTable opcodes_DD;
-static struct Z80OpcodeTable opcodes_FD;
-static struct Z80OpcodeTable opcodes_ED;
-static struct Z80OpcodeTable opcodes_CB;
-static struct Z80OpcodeTable opcodes_DDCB;
-static struct Z80OpcodeTable opcodes_FDCB;
+static const struct Z80OpcodeTable opcodes_main;
+static const struct Z80OpcodeTable opcodes_DD;
+static const struct Z80OpcodeTable opcodes_FD;
+static const struct Z80OpcodeTable opcodes_ED;
+static const struct Z80OpcodeTable opcodes_CB;
+static const struct Z80OpcodeTable opcodes_DDCB;
+static const struct Z80OpcodeTable opcodes_FDCB;
 
 
-static struct Z80OpcodeTable opcodes_main = { 0, {
+static const struct Z80OpcodeTable opcodes_main = { 0, {
 	{ NOP                 , OP_NONE  , "NOP"               , NULL },
 	{ LD_BC_nn            , OP_WORD  , "LD BC,0%04Xh"      , NULL },
 	{ LD_off_BC_A         , OP_NONE  , "LD (BC),A"         , NULL },
@@ -267,7 +267,7 @@ static struct Z80OpcodeTable opcodes_main = { 0, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_CB = { 0, {
+static const struct Z80OpcodeTable opcodes_CB = { 0, {
 	{ RLC_B               , OP_NONE  , "RLC B"             , NULL },
 	{ RLC_C               , OP_NONE  , "RLC C"             , NULL },
 	{ RLC_D               , OP_NONE  , "RLC D"             , NULL },
@@ -527,7 +527,7 @@ static struct Z80OpcodeTable opcodes_CB = { 0, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_DD = { 0, {
+static const struct Z80OpcodeTable opcodes_DD = { 0, {
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
@@ -787,7 +787,7 @@ static struct Z80OpcodeTable opcodes_DD = { 0, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_DDCB = { 1, {
+static const struct Z80OpcodeTable opcodes_DDCB = { 1, {
 	{ LD_B_RLC_off_IX_d   , OP_BYTE  , "LD B,RLC (IX+0%02Xh)", NULL },
 	{ LD_C_RLC_off_IX_d   , OP_BYTE  , "LD C,RLC (IX+0%02Xh)", NULL },
 	{ LD_D_RLC_off_IX_d   , OP_BYTE  , "LD D,RLC (IX+0%02Xh)", NULL },
@@ -1047,7 +1047,7 @@ static struct Z80OpcodeTable opcodes_DDCB = { 1, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_ED = { 0, {
+static const struct Z80OpcodeTable opcodes_ED = { 0, {
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
@@ -1307,7 +1307,7 @@ static struct Z80OpcodeTable opcodes_ED = { 0, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_FD = { 0, {
+static const struct Z80OpcodeTable opcodes_FD = { 0, {
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
 	{ NULL                , OP_NONE  , NULL                , NULL },
@@ -1567,7 +1567,7 @@ static struct Z80OpcodeTable opcodes_FD = { 0, {
 } };
 
 
-static struct Z80OpcodeTable opcodes_FDCB = { 1, {
+static const struct Z80OpcodeTable opcodes_FDCB = { 1, {
 	{ LD_B_RLC_off_IY_d   , OP_BYTE  , "LD B,RLC (IY+0%02Xh)", NULL },
 	{ LD_C_RLC_off_IY_d   , OP_BYTE  , "LD C,RLC (IY+0%02Xh)", NULL },
 	{ LD_D_RLC_off_IY_d   , OP_BYTE  , "LD D,RLC (IY+0%02Xh)", NULL },

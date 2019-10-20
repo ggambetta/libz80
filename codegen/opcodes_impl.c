@@ -7,7 +7,7 @@ static void ADC_A_off_HL (Z80Context* ctx)
 static void ADC_A_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IX + displacement), F1_ADC, F2_ADC);
 	
 }
@@ -16,7 +16,7 @@ static void ADC_A_off_IX_d (Z80Context* ctx)
 static void ADC_A_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IY + displacement), F1_ADC, F2_ADC);
 	
 }
@@ -131,7 +131,7 @@ static void ADD_A_off_HL (Z80Context* ctx)
 static void ADD_A_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IX + displacement), F1_ADD, F2_ADD);
 	
 }
@@ -140,7 +140,7 @@ static void ADD_A_off_IX_d (Z80Context* ctx)
 static void ADD_A_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IY + displacement), F1_ADD, F2_ADD);
 	
 }
@@ -311,14 +311,14 @@ static void AND_off_HL (Z80Context* ctx)
 static void AND_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doAND(ctx, read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++)));
+	doAND(ctx, read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
 static void AND_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doAND(ctx, read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++)));
+	doAND(ctx, read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
@@ -404,7 +404,7 @@ static void BIT_0_off_HL (Z80Context* ctx)
 static void BIT_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 0, address);
 }
 
@@ -412,7 +412,7 @@ static void BIT_0_off_IX_d (Z80Context* ctx)
 static void BIT_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 0, address);
 }
 
@@ -469,7 +469,7 @@ static void BIT_1_off_HL (Z80Context* ctx)
 static void BIT_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 1, address);
 }
 
@@ -477,7 +477,7 @@ static void BIT_1_off_IX_d (Z80Context* ctx)
 static void BIT_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 1, address);
 }
 
@@ -534,7 +534,7 @@ static void BIT_2_off_HL (Z80Context* ctx)
 static void BIT_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 2, address);
 }
 
@@ -542,7 +542,7 @@ static void BIT_2_off_IX_d (Z80Context* ctx)
 static void BIT_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 2, address);
 }
 
@@ -599,7 +599,7 @@ static void BIT_3_off_HL (Z80Context* ctx)
 static void BIT_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 3, address);
 }
 
@@ -607,7 +607,7 @@ static void BIT_3_off_IX_d (Z80Context* ctx)
 static void BIT_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 3, address);
 }
 
@@ -664,7 +664,7 @@ static void BIT_4_off_HL (Z80Context* ctx)
 static void BIT_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 4, address);
 }
 
@@ -672,7 +672,7 @@ static void BIT_4_off_IX_d (Z80Context* ctx)
 static void BIT_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 4, address);
 }
 
@@ -729,7 +729,7 @@ static void BIT_5_off_HL (Z80Context* ctx)
 static void BIT_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 5, address);
 }
 
@@ -737,7 +737,7 @@ static void BIT_5_off_IX_d (Z80Context* ctx)
 static void BIT_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 5, address);
 }
 
@@ -794,7 +794,7 @@ static void BIT_6_off_HL (Z80Context* ctx)
 static void BIT_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 6, address);
 }
 
@@ -802,7 +802,7 @@ static void BIT_6_off_IX_d (Z80Context* ctx)
 static void BIT_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 6, address);
 }
 
@@ -859,7 +859,7 @@ static void BIT_7_off_HL (Z80Context* ctx)
 static void BIT_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IX + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IX + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 7, address);
 }
 
@@ -867,7 +867,7 @@ static void BIT_7_off_IX_d (Z80Context* ctx)
 static void BIT_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	ushort address = WR.IY + (char) read8(ctx, ctx->PC++);
+	ushort address = WR.IY + (signed char) read8(ctx, ctx->PC++);
 	doBIT_indexed(ctx, 7, address);
 }
 
@@ -1057,7 +1057,7 @@ static void CP_off_HL (Z80Context* ctx)
 static void CP_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	byte val = read8(ctx, WR.IX + displacement);
 	doArithmetic(ctx, val, 0, 1);	
 	adjustFlags(ctx, val);
@@ -1067,7 +1067,7 @@ static void CP_off_IX_d (Z80Context* ctx)
 static void CP_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	byte val = read8(ctx, WR.IY + displacement);
 	doArithmetic(ctx, val, 0, 1);	
 	adjustFlags(ctx, val);
@@ -1243,7 +1243,7 @@ static void DEC_off_HL (Z80Context* ctx)
 static void DEC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 6;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	byte value = read8(ctx, WR.IX + off);
 	write8(ctx, WR.IX + off, doIncDec(ctx, value, ID_DEC));
 	
@@ -1253,7 +1253,7 @@ static void DEC_off_IX_d (Z80Context* ctx)
 static void DEC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 6;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	byte value = read8(ctx, WR.IY + off);
 	write8(ctx, WR.IY + off, doIncDec(ctx, value, ID_DEC));
 	
@@ -1378,7 +1378,7 @@ static void DI (Z80Context* ctx)
 static void DJNZ_off_PC_e (Z80Context* ctx)
 {
 	ctx->tstates += 1;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B--;
 	if (BR.B)
 	{
@@ -1570,7 +1570,7 @@ static void INC_off_HL (Z80Context* ctx)
 static void INC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 6;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	byte value = read8(ctx, WR.IX + off);
 	write8(ctx, WR.IX + off, doIncDec(ctx, value, ID_INC));
 	
@@ -1580,7 +1580,7 @@ static void INC_off_IX_d (Z80Context* ctx)
 static void INC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 6;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	byte value = read8(ctx, WR.IY + off);
 	write8(ctx, WR.IY + off, doIncDec(ctx, value, ID_INC));
 	
@@ -1977,7 +1977,7 @@ static void LD_off_HL_n (Z80Context* ctx)
 static void LD_off_IX_d_A (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.A);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.A);
 	
 }
 
@@ -1985,7 +1985,7 @@ static void LD_off_IX_d_A (Z80Context* ctx)
 static void LD_off_IX_d_B (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.B);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.B);
 	
 }
 
@@ -1993,7 +1993,7 @@ static void LD_off_IX_d_B (Z80Context* ctx)
 static void LD_off_IX_d_C (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.C);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.C);
 	
 }
 
@@ -2001,7 +2001,7 @@ static void LD_off_IX_d_C (Z80Context* ctx)
 static void LD_off_IX_d_D (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.D);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.D);
 	
 }
 
@@ -2009,7 +2009,7 @@ static void LD_off_IX_d_D (Z80Context* ctx)
 static void LD_off_IX_d_E (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.E);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.E);
 	
 }
 
@@ -2017,7 +2017,7 @@ static void LD_off_IX_d_E (Z80Context* ctx)
 static void LD_off_IX_d_H (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.H);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.H);
 	
 }
 
@@ -2025,7 +2025,7 @@ static void LD_off_IX_d_H (Z80Context* ctx)
 static void LD_off_IX_d_L (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IX + (char) read8(ctx, ctx->PC++), BR.L);
+	write8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++), BR.L);
 	
 }
 
@@ -2033,7 +2033,7 @@ static void LD_off_IX_d_L (Z80Context* ctx)
 static void LD_off_IX_d_n (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char offset = read8(ctx, ctx->PC++);
+	signed char offset = read8(ctx, ctx->PC++);
 	byte n = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + offset, n);
 	
@@ -2043,7 +2043,7 @@ static void LD_off_IX_d_n (Z80Context* ctx)
 static void LD_off_IY_d_A (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.A);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.A);
 	
 }
 
@@ -2051,7 +2051,7 @@ static void LD_off_IY_d_A (Z80Context* ctx)
 static void LD_off_IY_d_B (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.B);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.B);
 	
 }
 
@@ -2059,7 +2059,7 @@ static void LD_off_IY_d_B (Z80Context* ctx)
 static void LD_off_IY_d_C (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.C);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.C);
 	
 }
 
@@ -2067,7 +2067,7 @@ static void LD_off_IY_d_C (Z80Context* ctx)
 static void LD_off_IY_d_D (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.D);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.D);
 	
 }
 
@@ -2075,7 +2075,7 @@ static void LD_off_IY_d_D (Z80Context* ctx)
 static void LD_off_IY_d_E (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.E);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.E);
 	
 }
 
@@ -2083,7 +2083,7 @@ static void LD_off_IY_d_E (Z80Context* ctx)
 static void LD_off_IY_d_H (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.H);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.H);
 	
 }
 
@@ -2091,7 +2091,7 @@ static void LD_off_IY_d_H (Z80Context* ctx)
 static void LD_off_IY_d_L (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	write8(ctx, WR.IY + (char) read8(ctx, ctx->PC++), BR.L);
+	write8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++), BR.L);
 	
 }
 
@@ -2099,7 +2099,7 @@ static void LD_off_IY_d_L (Z80Context* ctx)
 static void LD_off_IY_d_n (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char offset = read8(ctx, ctx->PC++);
+	signed char offset = read8(ctx, ctx->PC++);
 	byte n = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + offset, n);
 	
@@ -2183,14 +2183,14 @@ static void LD_A_off_HL (Z80Context* ctx)
 static void LD_A_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.A = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.A = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_A_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.A = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.A = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -2304,7 +2304,7 @@ static void LD_A_R (Z80Context* ctx)
 static void LD_A_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2313,7 +2313,7 @@ static void LD_A_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2322,7 +2322,7 @@ static void LD_A_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2331,7 +2331,7 @@ static void LD_A_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2340,7 +2340,7 @@ static void LD_A_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2349,7 +2349,7 @@ static void LD_A_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2358,7 +2358,7 @@ static void LD_A_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2367,7 +2367,7 @@ static void LD_A_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2376,7 +2376,7 @@ static void LD_A_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2385,7 +2385,7 @@ static void LD_A_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2394,7 +2394,7 @@ static void LD_A_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2403,7 +2403,7 @@ static void LD_A_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2412,7 +2412,7 @@ static void LD_A_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2421,7 +2421,7 @@ static void LD_A_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2430,7 +2430,7 @@ static void LD_A_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_A_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2439,7 +2439,7 @@ static void LD_A_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_A_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2448,7 +2448,7 @@ static void LD_A_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_A_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);
 }
@@ -2457,7 +2457,7 @@ static void LD_A_RL_off_IX_d (Z80Context* ctx)
 static void LD_A_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);
 }
@@ -2466,7 +2466,7 @@ static void LD_A_RL_off_IY_d (Z80Context* ctx)
 static void LD_A_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);
 }
@@ -2475,7 +2475,7 @@ static void LD_A_RLC_off_IX_d (Z80Context* ctx)
 static void LD_A_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);
 }
@@ -2484,7 +2484,7 @@ static void LD_A_RLC_off_IY_d (Z80Context* ctx)
 static void LD_A_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);
 }
@@ -2493,7 +2493,7 @@ static void LD_A_RR_off_IX_d (Z80Context* ctx)
 static void LD_A_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);
 }
@@ -2502,7 +2502,7 @@ static void LD_A_RR_off_IY_d (Z80Context* ctx)
 static void LD_A_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);
 }
@@ -2511,7 +2511,7 @@ static void LD_A_RRC_off_IX_d (Z80Context* ctx)
 static void LD_A_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);
 }
@@ -2520,7 +2520,7 @@ static void LD_A_RRC_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2529,7 +2529,7 @@ static void LD_A_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2538,7 +2538,7 @@ static void LD_A_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2547,7 +2547,7 @@ static void LD_A_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2556,7 +2556,7 @@ static void LD_A_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2565,7 +2565,7 @@ static void LD_A_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2574,7 +2574,7 @@ static void LD_A_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2583,7 +2583,7 @@ static void LD_A_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2592,7 +2592,7 @@ static void LD_A_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2601,7 +2601,7 @@ static void LD_A_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2610,7 +2610,7 @@ static void LD_A_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2619,7 +2619,7 @@ static void LD_A_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2628,7 +2628,7 @@ static void LD_A_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2637,7 +2637,7 @@ static void LD_A_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2646,7 +2646,7 @@ static void LD_A_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_A_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.A);	
 }
@@ -2655,7 +2655,7 @@ static void LD_A_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_A_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.A);	
 }
@@ -2664,7 +2664,7 @@ static void LD_A_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_A_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.A);	
 	
@@ -2674,7 +2674,7 @@ static void LD_A_SLA_off_IX_d (Z80Context* ctx)
 static void LD_A_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.A);	
 	
@@ -2684,7 +2684,7 @@ static void LD_A_SLA_off_IY_d (Z80Context* ctx)
 static void LD_A_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.A);	
 	  
@@ -2694,7 +2694,7 @@ static void LD_A_SLL_off_IX_d (Z80Context* ctx)
 static void LD_A_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.A);	
 	  
@@ -2704,7 +2704,7 @@ static void LD_A_SLL_off_IY_d (Z80Context* ctx)
 static void LD_A_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.A);	
 	
@@ -2714,7 +2714,7 @@ static void LD_A_SRA_off_IX_d (Z80Context* ctx)
 static void LD_A_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.A);	
 	
@@ -2724,7 +2724,7 @@ static void LD_A_SRA_off_IY_d (Z80Context* ctx)
 static void LD_A_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.A);	
 	  
@@ -2734,7 +2734,7 @@ static void LD_A_SRL_off_IX_d (Z80Context* ctx)
 static void LD_A_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.A = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.A);	
 	  
@@ -2750,14 +2750,14 @@ static void LD_B_off_HL (Z80Context* ctx)
 static void LD_B_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.B = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.B = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_B_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.B = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.B = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -2837,7 +2837,7 @@ static void LD_B_n (Z80Context* ctx)
 static void LD_B_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2846,7 +2846,7 @@ static void LD_B_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2855,7 +2855,7 @@ static void LD_B_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2864,7 +2864,7 @@ static void LD_B_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2873,7 +2873,7 @@ static void LD_B_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2882,7 +2882,7 @@ static void LD_B_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2891,7 +2891,7 @@ static void LD_B_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2900,7 +2900,7 @@ static void LD_B_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2909,7 +2909,7 @@ static void LD_B_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2918,7 +2918,7 @@ static void LD_B_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2927,7 +2927,7 @@ static void LD_B_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2936,7 +2936,7 @@ static void LD_B_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2945,7 +2945,7 @@ static void LD_B_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2954,7 +2954,7 @@ static void LD_B_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2963,7 +2963,7 @@ static void LD_B_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_B_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -2972,7 +2972,7 @@ static void LD_B_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_B_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -2981,7 +2981,7 @@ static void LD_B_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_B_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);
 }
@@ -2990,7 +2990,7 @@ static void LD_B_RL_off_IX_d (Z80Context* ctx)
 static void LD_B_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);
 }
@@ -2999,7 +2999,7 @@ static void LD_B_RL_off_IY_d (Z80Context* ctx)
 static void LD_B_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);
 }
@@ -3008,7 +3008,7 @@ static void LD_B_RLC_off_IX_d (Z80Context* ctx)
 static void LD_B_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);
 }
@@ -3017,7 +3017,7 @@ static void LD_B_RLC_off_IY_d (Z80Context* ctx)
 static void LD_B_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);
 }
@@ -3026,7 +3026,7 @@ static void LD_B_RR_off_IX_d (Z80Context* ctx)
 static void LD_B_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);
 }
@@ -3035,7 +3035,7 @@ static void LD_B_RR_off_IY_d (Z80Context* ctx)
 static void LD_B_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);
 }
@@ -3044,7 +3044,7 @@ static void LD_B_RRC_off_IX_d (Z80Context* ctx)
 static void LD_B_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);
 }
@@ -3053,7 +3053,7 @@ static void LD_B_RRC_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3062,7 +3062,7 @@ static void LD_B_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3071,7 +3071,7 @@ static void LD_B_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3080,7 +3080,7 @@ static void LD_B_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3089,7 +3089,7 @@ static void LD_B_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3098,7 +3098,7 @@ static void LD_B_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3107,7 +3107,7 @@ static void LD_B_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3116,7 +3116,7 @@ static void LD_B_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3125,7 +3125,7 @@ static void LD_B_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3134,7 +3134,7 @@ static void LD_B_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3143,7 +3143,7 @@ static void LD_B_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3152,7 +3152,7 @@ static void LD_B_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3161,7 +3161,7 @@ static void LD_B_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3170,7 +3170,7 @@ static void LD_B_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3179,7 +3179,7 @@ static void LD_B_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_B_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.B);	
 }
@@ -3188,7 +3188,7 @@ static void LD_B_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_B_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.B);	
 }
@@ -3197,7 +3197,7 @@ static void LD_B_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_B_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.B);	
 	
@@ -3207,7 +3207,7 @@ static void LD_B_SLA_off_IX_d (Z80Context* ctx)
 static void LD_B_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.B);	
 	
@@ -3217,7 +3217,7 @@ static void LD_B_SLA_off_IY_d (Z80Context* ctx)
 static void LD_B_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.B);	
 	  
@@ -3227,7 +3227,7 @@ static void LD_B_SLL_off_IX_d (Z80Context* ctx)
 static void LD_B_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.B);	
 	  
@@ -3237,7 +3237,7 @@ static void LD_B_SLL_off_IY_d (Z80Context* ctx)
 static void LD_B_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.B);	
 	
@@ -3247,7 +3247,7 @@ static void LD_B_SRA_off_IX_d (Z80Context* ctx)
 static void LD_B_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.B);	
 	
@@ -3257,7 +3257,7 @@ static void LD_B_SRA_off_IY_d (Z80Context* ctx)
 static void LD_B_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.B);	
 	  
@@ -3267,7 +3267,7 @@ static void LD_B_SRL_off_IX_d (Z80Context* ctx)
 static void LD_B_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.B = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.B);	
 	  
@@ -3299,14 +3299,14 @@ static void LD_C_off_HL (Z80Context* ctx)
 static void LD_C_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.C = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.C = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_C_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.C = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.C = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -3386,7 +3386,7 @@ static void LD_C_n (Z80Context* ctx)
 static void LD_C_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3395,7 +3395,7 @@ static void LD_C_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3404,7 +3404,7 @@ static void LD_C_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3413,7 +3413,7 @@ static void LD_C_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3422,7 +3422,7 @@ static void LD_C_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3431,7 +3431,7 @@ static void LD_C_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3440,7 +3440,7 @@ static void LD_C_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3449,7 +3449,7 @@ static void LD_C_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3458,7 +3458,7 @@ static void LD_C_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3467,7 +3467,7 @@ static void LD_C_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3476,7 +3476,7 @@ static void LD_C_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3485,7 +3485,7 @@ static void LD_C_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3494,7 +3494,7 @@ static void LD_C_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3503,7 +3503,7 @@ static void LD_C_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3512,7 +3512,7 @@ static void LD_C_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_C_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3521,7 +3521,7 @@ static void LD_C_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_C_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3530,7 +3530,7 @@ static void LD_C_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_C_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);
 }
@@ -3539,7 +3539,7 @@ static void LD_C_RL_off_IX_d (Z80Context* ctx)
 static void LD_C_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);
 }
@@ -3548,7 +3548,7 @@ static void LD_C_RL_off_IY_d (Z80Context* ctx)
 static void LD_C_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);
 }
@@ -3557,7 +3557,7 @@ static void LD_C_RLC_off_IX_d (Z80Context* ctx)
 static void LD_C_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);
 }
@@ -3566,7 +3566,7 @@ static void LD_C_RLC_off_IY_d (Z80Context* ctx)
 static void LD_C_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);
 }
@@ -3575,7 +3575,7 @@ static void LD_C_RR_off_IX_d (Z80Context* ctx)
 static void LD_C_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);
 }
@@ -3584,7 +3584,7 @@ static void LD_C_RR_off_IY_d (Z80Context* ctx)
 static void LD_C_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);
 }
@@ -3593,7 +3593,7 @@ static void LD_C_RRC_off_IX_d (Z80Context* ctx)
 static void LD_C_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);
 }
@@ -3602,7 +3602,7 @@ static void LD_C_RRC_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3611,7 +3611,7 @@ static void LD_C_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3620,7 +3620,7 @@ static void LD_C_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3629,7 +3629,7 @@ static void LD_C_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3638,7 +3638,7 @@ static void LD_C_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3647,7 +3647,7 @@ static void LD_C_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3656,7 +3656,7 @@ static void LD_C_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3665,7 +3665,7 @@ static void LD_C_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3674,7 +3674,7 @@ static void LD_C_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3683,7 +3683,7 @@ static void LD_C_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3692,7 +3692,7 @@ static void LD_C_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3701,7 +3701,7 @@ static void LD_C_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3710,7 +3710,7 @@ static void LD_C_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3719,7 +3719,7 @@ static void LD_C_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3728,7 +3728,7 @@ static void LD_C_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_C_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.C);	
 }
@@ -3737,7 +3737,7 @@ static void LD_C_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_C_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.C);	
 }
@@ -3746,7 +3746,7 @@ static void LD_C_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_C_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.C);	
 	
@@ -3756,7 +3756,7 @@ static void LD_C_SLA_off_IX_d (Z80Context* ctx)
 static void LD_C_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.C);	
 	
@@ -3766,7 +3766,7 @@ static void LD_C_SLA_off_IY_d (Z80Context* ctx)
 static void LD_C_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.C);	
 	  
@@ -3776,7 +3776,7 @@ static void LD_C_SLL_off_IX_d (Z80Context* ctx)
 static void LD_C_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.C);	
 	  
@@ -3786,7 +3786,7 @@ static void LD_C_SLL_off_IY_d (Z80Context* ctx)
 static void LD_C_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.C);	
 	
@@ -3796,7 +3796,7 @@ static void LD_C_SRA_off_IX_d (Z80Context* ctx)
 static void LD_C_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.C);	
 	
@@ -3806,7 +3806,7 @@ static void LD_C_SRA_off_IY_d (Z80Context* ctx)
 static void LD_C_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.C);	
 	  
@@ -3816,7 +3816,7 @@ static void LD_C_SRL_off_IX_d (Z80Context* ctx)
 static void LD_C_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.C = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.C);	
 	  
@@ -3832,14 +3832,14 @@ static void LD_D_off_HL (Z80Context* ctx)
 static void LD_D_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.D = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.D = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_D_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.D = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.D = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -3919,7 +3919,7 @@ static void LD_D_n (Z80Context* ctx)
 static void LD_D_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -3928,7 +3928,7 @@ static void LD_D_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -3937,7 +3937,7 @@ static void LD_D_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -3946,7 +3946,7 @@ static void LD_D_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -3955,7 +3955,7 @@ static void LD_D_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -3964,7 +3964,7 @@ static void LD_D_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -3973,7 +3973,7 @@ static void LD_D_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -3982,7 +3982,7 @@ static void LD_D_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -3991,7 +3991,7 @@ static void LD_D_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4000,7 +4000,7 @@ static void LD_D_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4009,7 +4009,7 @@ static void LD_D_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4018,7 +4018,7 @@ static void LD_D_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4027,7 +4027,7 @@ static void LD_D_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4036,7 +4036,7 @@ static void LD_D_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4045,7 +4045,7 @@ static void LD_D_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_D_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4054,7 +4054,7 @@ static void LD_D_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_D_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4063,7 +4063,7 @@ static void LD_D_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_D_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);
 }
@@ -4072,7 +4072,7 @@ static void LD_D_RL_off_IX_d (Z80Context* ctx)
 static void LD_D_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);
 }
@@ -4081,7 +4081,7 @@ static void LD_D_RL_off_IY_d (Z80Context* ctx)
 static void LD_D_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);
 }
@@ -4090,7 +4090,7 @@ static void LD_D_RLC_off_IX_d (Z80Context* ctx)
 static void LD_D_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);
 }
@@ -4099,7 +4099,7 @@ static void LD_D_RLC_off_IY_d (Z80Context* ctx)
 static void LD_D_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);
 }
@@ -4108,7 +4108,7 @@ static void LD_D_RR_off_IX_d (Z80Context* ctx)
 static void LD_D_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);
 }
@@ -4117,7 +4117,7 @@ static void LD_D_RR_off_IY_d (Z80Context* ctx)
 static void LD_D_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);
 }
@@ -4126,7 +4126,7 @@ static void LD_D_RRC_off_IX_d (Z80Context* ctx)
 static void LD_D_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);
 }
@@ -4135,7 +4135,7 @@ static void LD_D_RRC_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4144,7 +4144,7 @@ static void LD_D_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4153,7 +4153,7 @@ static void LD_D_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4162,7 +4162,7 @@ static void LD_D_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4171,7 +4171,7 @@ static void LD_D_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4180,7 +4180,7 @@ static void LD_D_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4189,7 +4189,7 @@ static void LD_D_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4198,7 +4198,7 @@ static void LD_D_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4207,7 +4207,7 @@ static void LD_D_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4216,7 +4216,7 @@ static void LD_D_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4225,7 +4225,7 @@ static void LD_D_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4234,7 +4234,7 @@ static void LD_D_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4243,7 +4243,7 @@ static void LD_D_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4252,7 +4252,7 @@ static void LD_D_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4261,7 +4261,7 @@ static void LD_D_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_D_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.D);	
 }
@@ -4270,7 +4270,7 @@ static void LD_D_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_D_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.D);	
 }
@@ -4279,7 +4279,7 @@ static void LD_D_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_D_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.D);	
 	
@@ -4289,7 +4289,7 @@ static void LD_D_SLA_off_IX_d (Z80Context* ctx)
 static void LD_D_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.D);	
 	
@@ -4299,7 +4299,7 @@ static void LD_D_SLA_off_IY_d (Z80Context* ctx)
 static void LD_D_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.D);	
 	  
@@ -4309,7 +4309,7 @@ static void LD_D_SLL_off_IX_d (Z80Context* ctx)
 static void LD_D_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.D);	
 	  
@@ -4319,7 +4319,7 @@ static void LD_D_SLL_off_IY_d (Z80Context* ctx)
 static void LD_D_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.D);	
 	
@@ -4329,7 +4329,7 @@ static void LD_D_SRA_off_IX_d (Z80Context* ctx)
 static void LD_D_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.D);	
 	
@@ -4339,7 +4339,7 @@ static void LD_D_SRA_off_IY_d (Z80Context* ctx)
 static void LD_D_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.D);	
 	  
@@ -4349,7 +4349,7 @@ static void LD_D_SRL_off_IX_d (Z80Context* ctx)
 static void LD_D_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.D = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.D);	
 	  
@@ -4381,14 +4381,14 @@ static void LD_E_off_HL (Z80Context* ctx)
 static void LD_E_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.E = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.E = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_E_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.E = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.E = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -4468,7 +4468,7 @@ static void LD_E_n (Z80Context* ctx)
 static void LD_E_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4477,7 +4477,7 @@ static void LD_E_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4486,7 +4486,7 @@ static void LD_E_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4495,7 +4495,7 @@ static void LD_E_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4504,7 +4504,7 @@ static void LD_E_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4513,7 +4513,7 @@ static void LD_E_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4522,7 +4522,7 @@ static void LD_E_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4531,7 +4531,7 @@ static void LD_E_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4540,7 +4540,7 @@ static void LD_E_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4549,7 +4549,7 @@ static void LD_E_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4558,7 +4558,7 @@ static void LD_E_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4567,7 +4567,7 @@ static void LD_E_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4576,7 +4576,7 @@ static void LD_E_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4585,7 +4585,7 @@ static void LD_E_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4594,7 +4594,7 @@ static void LD_E_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_E_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4603,7 +4603,7 @@ static void LD_E_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_E_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4612,7 +4612,7 @@ static void LD_E_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_E_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);
 }
@@ -4621,7 +4621,7 @@ static void LD_E_RL_off_IX_d (Z80Context* ctx)
 static void LD_E_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);
 }
@@ -4630,7 +4630,7 @@ static void LD_E_RL_off_IY_d (Z80Context* ctx)
 static void LD_E_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);
 }
@@ -4639,7 +4639,7 @@ static void LD_E_RLC_off_IX_d (Z80Context* ctx)
 static void LD_E_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);
 }
@@ -4648,7 +4648,7 @@ static void LD_E_RLC_off_IY_d (Z80Context* ctx)
 static void LD_E_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);
 }
@@ -4657,7 +4657,7 @@ static void LD_E_RR_off_IX_d (Z80Context* ctx)
 static void LD_E_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);
 }
@@ -4666,7 +4666,7 @@ static void LD_E_RR_off_IY_d (Z80Context* ctx)
 static void LD_E_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);
 }
@@ -4675,7 +4675,7 @@ static void LD_E_RRC_off_IX_d (Z80Context* ctx)
 static void LD_E_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);
 }
@@ -4684,7 +4684,7 @@ static void LD_E_RRC_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4693,7 +4693,7 @@ static void LD_E_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4702,7 +4702,7 @@ static void LD_E_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4711,7 +4711,7 @@ static void LD_E_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4720,7 +4720,7 @@ static void LD_E_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4729,7 +4729,7 @@ static void LD_E_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4738,7 +4738,7 @@ static void LD_E_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4747,7 +4747,7 @@ static void LD_E_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4756,7 +4756,7 @@ static void LD_E_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4765,7 +4765,7 @@ static void LD_E_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4774,7 +4774,7 @@ static void LD_E_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4783,7 +4783,7 @@ static void LD_E_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4792,7 +4792,7 @@ static void LD_E_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4801,7 +4801,7 @@ static void LD_E_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4810,7 +4810,7 @@ static void LD_E_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_E_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.E);	
 }
@@ -4819,7 +4819,7 @@ static void LD_E_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_E_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.E);	
 }
@@ -4828,7 +4828,7 @@ static void LD_E_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_E_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.E);	
 	
@@ -4838,7 +4838,7 @@ static void LD_E_SLA_off_IX_d (Z80Context* ctx)
 static void LD_E_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.E);	
 	
@@ -4848,7 +4848,7 @@ static void LD_E_SLA_off_IY_d (Z80Context* ctx)
 static void LD_E_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.E);	
 	  
@@ -4858,7 +4858,7 @@ static void LD_E_SLL_off_IX_d (Z80Context* ctx)
 static void LD_E_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.E);	
 	  
@@ -4868,7 +4868,7 @@ static void LD_E_SLL_off_IY_d (Z80Context* ctx)
 static void LD_E_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.E);	
 	
@@ -4878,7 +4878,7 @@ static void LD_E_SRA_off_IX_d (Z80Context* ctx)
 static void LD_E_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.E);	
 	
@@ -4888,7 +4888,7 @@ static void LD_E_SRA_off_IY_d (Z80Context* ctx)
 static void LD_E_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.E);	
 	  
@@ -4898,7 +4898,7 @@ static void LD_E_SRL_off_IX_d (Z80Context* ctx)
 static void LD_E_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.E = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.E);	
 	  
@@ -4914,14 +4914,14 @@ static void LD_H_off_HL (Z80Context* ctx)
 static void LD_H_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.H = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.H = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_H_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.H = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.H = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -4977,7 +4977,7 @@ static void LD_H_n (Z80Context* ctx)
 static void LD_H_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -4986,7 +4986,7 @@ static void LD_H_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -4995,7 +4995,7 @@ static void LD_H_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5004,7 +5004,7 @@ static void LD_H_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5013,7 +5013,7 @@ static void LD_H_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5022,7 +5022,7 @@ static void LD_H_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5031,7 +5031,7 @@ static void LD_H_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5040,7 +5040,7 @@ static void LD_H_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5049,7 +5049,7 @@ static void LD_H_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5058,7 +5058,7 @@ static void LD_H_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5067,7 +5067,7 @@ static void LD_H_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5076,7 +5076,7 @@ static void LD_H_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5085,7 +5085,7 @@ static void LD_H_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5094,7 +5094,7 @@ static void LD_H_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5103,7 +5103,7 @@ static void LD_H_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_H_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5112,7 +5112,7 @@ static void LD_H_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_H_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5121,7 +5121,7 @@ static void LD_H_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_H_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);
 }
@@ -5130,7 +5130,7 @@ static void LD_H_RL_off_IX_d (Z80Context* ctx)
 static void LD_H_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);
 }
@@ -5139,7 +5139,7 @@ static void LD_H_RL_off_IY_d (Z80Context* ctx)
 static void LD_H_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);
 }
@@ -5148,7 +5148,7 @@ static void LD_H_RLC_off_IX_d (Z80Context* ctx)
 static void LD_H_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);
 }
@@ -5157,7 +5157,7 @@ static void LD_H_RLC_off_IY_d (Z80Context* ctx)
 static void LD_H_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);
 }
@@ -5166,7 +5166,7 @@ static void LD_H_RR_off_IX_d (Z80Context* ctx)
 static void LD_H_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);
 }
@@ -5175,7 +5175,7 @@ static void LD_H_RR_off_IY_d (Z80Context* ctx)
 static void LD_H_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);
 }
@@ -5184,7 +5184,7 @@ static void LD_H_RRC_off_IX_d (Z80Context* ctx)
 static void LD_H_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);
 }
@@ -5193,7 +5193,7 @@ static void LD_H_RRC_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5202,7 +5202,7 @@ static void LD_H_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5211,7 +5211,7 @@ static void LD_H_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5220,7 +5220,7 @@ static void LD_H_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5229,7 +5229,7 @@ static void LD_H_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5238,7 +5238,7 @@ static void LD_H_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5247,7 +5247,7 @@ static void LD_H_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5256,7 +5256,7 @@ static void LD_H_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5265,7 +5265,7 @@ static void LD_H_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5274,7 +5274,7 @@ static void LD_H_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5283,7 +5283,7 @@ static void LD_H_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5292,7 +5292,7 @@ static void LD_H_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5301,7 +5301,7 @@ static void LD_H_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5310,7 +5310,7 @@ static void LD_H_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5319,7 +5319,7 @@ static void LD_H_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_H_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.H);	
 }
@@ -5328,7 +5328,7 @@ static void LD_H_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_H_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.H);	
 }
@@ -5337,7 +5337,7 @@ static void LD_H_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_H_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.H);	
 	
@@ -5347,7 +5347,7 @@ static void LD_H_SLA_off_IX_d (Z80Context* ctx)
 static void LD_H_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.H);	
 	
@@ -5357,7 +5357,7 @@ static void LD_H_SLA_off_IY_d (Z80Context* ctx)
 static void LD_H_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.H);	
 	  
@@ -5367,7 +5367,7 @@ static void LD_H_SLL_off_IX_d (Z80Context* ctx)
 static void LD_H_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.H);	
 	  
@@ -5377,7 +5377,7 @@ static void LD_H_SLL_off_IY_d (Z80Context* ctx)
 static void LD_H_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.H);	
 	
@@ -5387,7 +5387,7 @@ static void LD_H_SRA_off_IX_d (Z80Context* ctx)
 static void LD_H_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.H);	
 	
@@ -5397,7 +5397,7 @@ static void LD_H_SRA_off_IY_d (Z80Context* ctx)
 static void LD_H_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.H);	
 	  
@@ -5407,7 +5407,7 @@ static void LD_H_SRL_off_IX_d (Z80Context* ctx)
 static void LD_H_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.H = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.H);	
 	  
@@ -5674,14 +5674,14 @@ static void LD_L_off_HL (Z80Context* ctx)
 static void LD_L_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.L = read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++));
+	BR.L = read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++));
 }
 
 
 static void LD_L_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	BR.L = read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++));
+	BR.L = read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++));
 }
 
 
@@ -5737,7 +5737,7 @@ static void LD_L_n (Z80Context* ctx)
 static void LD_L_RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5746,7 +5746,7 @@ static void LD_L_RES_0_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5755,7 +5755,7 @@ static void LD_L_RES_0_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5764,7 +5764,7 @@ static void LD_L_RES_1_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5773,7 +5773,7 @@ static void LD_L_RES_1_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5782,7 +5782,7 @@ static void LD_L_RES_2_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5791,7 +5791,7 @@ static void LD_L_RES_2_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5800,7 +5800,7 @@ static void LD_L_RES_3_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5809,7 +5809,7 @@ static void LD_L_RES_3_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5818,7 +5818,7 @@ static void LD_L_RES_4_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5827,7 +5827,7 @@ static void LD_L_RES_4_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5836,7 +5836,7 @@ static void LD_L_RES_5_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5845,7 +5845,7 @@ static void LD_L_RES_5_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5854,7 +5854,7 @@ static void LD_L_RES_6_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5863,7 +5863,7 @@ static void LD_L_RES_6_off_IY_d (Z80Context* ctx)
 static void LD_L_RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5872,7 +5872,7 @@ static void LD_L_RES_7_off_IX_d (Z80Context* ctx)
 static void LD_L_RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5881,7 +5881,7 @@ static void LD_L_RES_7_off_IY_d (Z80Context* ctx)
 static void LD_L_RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRL(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);
 }
@@ -5890,7 +5890,7 @@ static void LD_L_RL_off_IX_d (Z80Context* ctx)
 static void LD_L_RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRL(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);
 }
@@ -5899,7 +5899,7 @@ static void LD_L_RL_off_IY_d (Z80Context* ctx)
 static void LD_L_RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRLC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);
 }
@@ -5908,7 +5908,7 @@ static void LD_L_RLC_off_IX_d (Z80Context* ctx)
 static void LD_L_RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRLC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);
 }
@@ -5917,7 +5917,7 @@ static void LD_L_RLC_off_IY_d (Z80Context* ctx)
 static void LD_L_RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRR(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);
 }
@@ -5926,7 +5926,7 @@ static void LD_L_RR_off_IX_d (Z80Context* ctx)
 static void LD_L_RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRR(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);
 }
@@ -5935,7 +5935,7 @@ static void LD_L_RR_off_IY_d (Z80Context* ctx)
 static void LD_L_RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRRC(ctx, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);
 }
@@ -5944,7 +5944,7 @@ static void LD_L_RRC_off_IX_d (Z80Context* ctx)
 static void LD_L_RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doRRC(ctx, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);
 }
@@ -5953,7 +5953,7 @@ static void LD_L_RRC_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5962,7 +5962,7 @@ static void LD_L_SET_0_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5971,7 +5971,7 @@ static void LD_L_SET_0_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5980,7 +5980,7 @@ static void LD_L_SET_1_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -5989,7 +5989,7 @@ static void LD_L_SET_1_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -5998,7 +5998,7 @@ static void LD_L_SET_2_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6007,7 +6007,7 @@ static void LD_L_SET_2_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -6016,7 +6016,7 @@ static void LD_L_SET_3_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6025,7 +6025,7 @@ static void LD_L_SET_3_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -6034,7 +6034,7 @@ static void LD_L_SET_4_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6043,7 +6043,7 @@ static void LD_L_SET_4_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -6052,7 +6052,7 @@ static void LD_L_SET_5_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6061,7 +6061,7 @@ static void LD_L_SET_5_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -6070,7 +6070,7 @@ static void LD_L_SET_6_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6079,7 +6079,7 @@ static void LD_L_SET_6_off_IY_d (Z80Context* ctx)
 static void LD_L_SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off));
 	write8(ctx, WR.IX + off, BR.L);	
 }
@@ -6088,7 +6088,7 @@ static void LD_L_SET_7_off_IX_d (Z80Context* ctx)
 static void LD_L_SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off));
 	write8(ctx, WR.IY + off, BR.L);	
 }
@@ -6097,7 +6097,7 @@ static void LD_L_SET_7_off_IY_d (Z80Context* ctx)
 static void LD_L_SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSL(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.L);	
 	
@@ -6107,7 +6107,7 @@ static void LD_L_SLA_off_IX_d (Z80Context* ctx)
 static void LD_L_SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSL(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.L);	
 	
@@ -6117,7 +6117,7 @@ static void LD_L_SLA_off_IY_d (Z80Context* ctx)
 static void LD_L_SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSL(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.L);	
 	  
@@ -6127,7 +6127,7 @@ static void LD_L_SLL_off_IX_d (Z80Context* ctx)
 static void LD_L_SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSL(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.L);	
 	  
@@ -6137,7 +6137,7 @@ static void LD_L_SLL_off_IY_d (Z80Context* ctx)
 static void LD_L_SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSR(ctx, read8(ctx, WR.IX + off), 1);
 	write8(ctx, WR.IX + off, BR.L);	
 	
@@ -6147,7 +6147,7 @@ static void LD_L_SRA_off_IX_d (Z80Context* ctx)
 static void LD_L_SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSR(ctx, read8(ctx, WR.IY + off), 1);
 	write8(ctx, WR.IY + off, BR.L);	
 	
@@ -6157,7 +6157,7 @@ static void LD_L_SRA_off_IY_d (Z80Context* ctx)
 static void LD_L_SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSR(ctx, read8(ctx, WR.IX + off), 0);
 	write8(ctx, WR.IX + off, BR.L);	
 	  
@@ -6167,7 +6167,7 @@ static void LD_L_SRL_off_IX_d (Z80Context* ctx)
 static void LD_L_SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	BR.L = doSR(ctx, read8(ctx, WR.IY + off), 0);
 	write8(ctx, WR.IY + off, BR.L);	
 	  
@@ -6295,14 +6295,14 @@ static void OR_off_HL (Z80Context* ctx)
 static void OR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doOR(ctx, read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++)));
+	doOR(ctx, read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
 static void OR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doOR(ctx, read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++)));
+	doOR(ctx, read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
@@ -6575,7 +6575,7 @@ static void RES_0_off_HL (Z80Context* ctx)
 static void RES_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IX + off)));
 	
 	
@@ -6585,7 +6585,7 @@ static void RES_0_off_IX_d (Z80Context* ctx)
 static void RES_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 0, read8(ctx, WR.IY + off)));
 	
 	
@@ -6644,7 +6644,7 @@ static void RES_1_off_HL (Z80Context* ctx)
 static void RES_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IX + off)));
 	
 	
@@ -6654,7 +6654,7 @@ static void RES_1_off_IX_d (Z80Context* ctx)
 static void RES_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 1, read8(ctx, WR.IY + off)));
 	
 	
@@ -6713,7 +6713,7 @@ static void RES_2_off_HL (Z80Context* ctx)
 static void RES_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IX + off)));
 	
 	
@@ -6723,7 +6723,7 @@ static void RES_2_off_IX_d (Z80Context* ctx)
 static void RES_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 2, read8(ctx, WR.IY + off)));
 	
 	
@@ -6782,7 +6782,7 @@ static void RES_3_off_HL (Z80Context* ctx)
 static void RES_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IX + off)));
 	
 	
@@ -6792,7 +6792,7 @@ static void RES_3_off_IX_d (Z80Context* ctx)
 static void RES_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 3, read8(ctx, WR.IY + off)));
 	
 	
@@ -6851,7 +6851,7 @@ static void RES_4_off_HL (Z80Context* ctx)
 static void RES_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IX + off)));
 	
 	
@@ -6861,7 +6861,7 @@ static void RES_4_off_IX_d (Z80Context* ctx)
 static void RES_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 4, read8(ctx, WR.IY + off)));
 	
 	
@@ -6920,7 +6920,7 @@ static void RES_5_off_HL (Z80Context* ctx)
 static void RES_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IX + off)));
 	
 	
@@ -6930,7 +6930,7 @@ static void RES_5_off_IX_d (Z80Context* ctx)
 static void RES_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 5, read8(ctx, WR.IY + off)));
 	
 	
@@ -6989,7 +6989,7 @@ static void RES_6_off_HL (Z80Context* ctx)
 static void RES_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IX + off)));
 	
 	
@@ -6999,7 +6999,7 @@ static void RES_6_off_IX_d (Z80Context* ctx)
 static void RES_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 6, read8(ctx, WR.IY + off)));
 	
 	
@@ -7058,7 +7058,7 @@ static void RES_7_off_HL (Z80Context* ctx)
 static void RES_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IX + off)));
 	
 	
@@ -7068,7 +7068,7 @@ static void RES_7_off_IX_d (Z80Context* ctx)
 static void RES_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_RES, 7, read8(ctx, WR.IY + off)));
 	
 	
@@ -7221,7 +7221,7 @@ static void RL_off_HL (Z80Context* ctx)
 static void RL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doRL(ctx, 1, read8(ctx, WR.IX + off)));
 }
 
@@ -7229,7 +7229,7 @@ static void RL_off_IX_d (Z80Context* ctx)
 static void RL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doRL(ctx, 1, read8(ctx, WR.IY + off)));
 }
 
@@ -7295,7 +7295,7 @@ static void RLC_off_HL (Z80Context* ctx)
 static void RLC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doRLC(ctx, 1, read8(ctx, WR.IX + off)));
 }
 
@@ -7303,7 +7303,7 @@ static void RLC_off_IX_d (Z80Context* ctx)
 static void RLC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doRLC(ctx, 1, read8(ctx, WR.IY + off)));
 }
 
@@ -7383,7 +7383,7 @@ static void RR_off_HL (Z80Context* ctx)
 static void RR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doRR(ctx, 1, read8(ctx, WR.IX + off)));
 }
 
@@ -7391,7 +7391,7 @@ static void RR_off_IX_d (Z80Context* ctx)
 static void RR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doRR(ctx, 1, read8(ctx, WR.IY + off)));
 }
 
@@ -7457,7 +7457,7 @@ static void RRC_off_HL (Z80Context* ctx)
 static void RRC_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doRRC(ctx, 1, read8(ctx, WR.IX + off)));
 }
 
@@ -7465,7 +7465,7 @@ static void RRC_off_IX_d (Z80Context* ctx)
 static void RRC_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doRRC(ctx, 1, read8(ctx, WR.IY + off)));
 }
 
@@ -7622,7 +7622,7 @@ static void SBC_A_off_HL (Z80Context* ctx)
 static void SBC_A_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IX + displacement), F1_SBC, F2_SBC);
 	
 }
@@ -7631,7 +7631,7 @@ static void SBC_A_off_IX_d (Z80Context* ctx)
 static void SBC_A_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IY + displacement), F1_SBC, F2_SBC);
 	
 }
@@ -7755,7 +7755,7 @@ static void SET_0_off_HL (Z80Context* ctx)
 static void SET_0_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IX + off)));
 	
 	
@@ -7765,7 +7765,7 @@ static void SET_0_off_IX_d (Z80Context* ctx)
 static void SET_0_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 0, read8(ctx, WR.IY + off)));
 	
 	
@@ -7824,7 +7824,7 @@ static void SET_1_off_HL (Z80Context* ctx)
 static void SET_1_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IX + off)));
 	
 	
@@ -7834,7 +7834,7 @@ static void SET_1_off_IX_d (Z80Context* ctx)
 static void SET_1_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 1, read8(ctx, WR.IY + off)));
 	
 	
@@ -7893,7 +7893,7 @@ static void SET_2_off_HL (Z80Context* ctx)
 static void SET_2_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IX + off)));
 	
 	
@@ -7903,7 +7903,7 @@ static void SET_2_off_IX_d (Z80Context* ctx)
 static void SET_2_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 2, read8(ctx, WR.IY + off)));
 	
 	
@@ -7962,7 +7962,7 @@ static void SET_3_off_HL (Z80Context* ctx)
 static void SET_3_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IX + off)));
 	
 	
@@ -7972,7 +7972,7 @@ static void SET_3_off_IX_d (Z80Context* ctx)
 static void SET_3_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 3, read8(ctx, WR.IY + off)));
 	
 	
@@ -8031,7 +8031,7 @@ static void SET_4_off_HL (Z80Context* ctx)
 static void SET_4_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IX + off)));
 	
 	
@@ -8041,7 +8041,7 @@ static void SET_4_off_IX_d (Z80Context* ctx)
 static void SET_4_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 4, read8(ctx, WR.IY + off)));
 	
 	
@@ -8100,7 +8100,7 @@ static void SET_5_off_HL (Z80Context* ctx)
 static void SET_5_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IX + off)));
 	
 	
@@ -8110,7 +8110,7 @@ static void SET_5_off_IX_d (Z80Context* ctx)
 static void SET_5_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 5, read8(ctx, WR.IY + off)));
 	
 	
@@ -8169,7 +8169,7 @@ static void SET_6_off_HL (Z80Context* ctx)
 static void SET_6_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IX + off)));
 	
 	
@@ -8179,7 +8179,7 @@ static void SET_6_off_IX_d (Z80Context* ctx)
 static void SET_6_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 6, read8(ctx, WR.IY + off)));
 	
 	
@@ -8238,7 +8238,7 @@ static void SET_7_off_HL (Z80Context* ctx)
 static void SET_7_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IX + off, doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IX + off)));
 	
 	
@@ -8248,7 +8248,7 @@ static void SET_7_off_IX_d (Z80Context* ctx)
 static void SET_7_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);
+	signed char off = read8(ctx, ctx->PC++);
 	write8(ctx, WR.IY + off, doSetRes(ctx, SR_SET, 7, read8(ctx, WR.IY + off)));
 	
 	
@@ -8307,7 +8307,7 @@ static void SLA_off_HL (Z80Context* ctx)
 static void SLA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IX + off, doSL(ctx, read8(ctx, WR.IX + off), IA_A));
 }
 
@@ -8315,7 +8315,7 @@ static void SLA_off_IX_d (Z80Context* ctx)
 static void SLA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IY + off, doSL(ctx, read8(ctx, WR.IY + off), IA_A));
 }
 
@@ -8386,7 +8386,7 @@ static void SLL_off_HL (Z80Context* ctx)
 static void SLL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IX + off, doSL(ctx, read8(ctx, WR.IX + off), IA_L));
 }
 
@@ -8394,7 +8394,7 @@ static void SLL_off_IX_d (Z80Context* ctx)
 static void SLL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IY + off, doSL(ctx, read8(ctx, WR.IY + off), IA_L));
 }
 
@@ -8465,7 +8465,7 @@ static void SRA_off_HL (Z80Context* ctx)
 static void SRA_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IX + off, doSR(ctx, read8(ctx, WR.IX + off), IA_A));
 }
 
@@ -8473,7 +8473,7 @@ static void SRA_off_IX_d (Z80Context* ctx)
 static void SRA_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IY + off, doSR(ctx, read8(ctx, WR.IY + off), IA_A));
 }
 
@@ -8544,7 +8544,7 @@ static void SRL_off_HL (Z80Context* ctx)
 static void SRL_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IX + off, doSR(ctx, read8(ctx, WR.IX + off), IA_L));
 }
 
@@ -8552,7 +8552,7 @@ static void SRL_off_IX_d (Z80Context* ctx)
 static void SRL_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 2;
-	char off = read8(ctx, ctx->PC++);	
+	signed char off = read8(ctx, ctx->PC++);	
 	write8(ctx, WR.IY + off, doSR(ctx, read8(ctx, WR.IY + off), IA_L));
 }
 
@@ -8622,7 +8622,7 @@ static void SUB_A_off_HL (Z80Context* ctx)
 static void SUB_A_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IX + displacement), F1_SUB, F2_SUB);
 	
 }
@@ -8631,7 +8631,7 @@ static void SUB_A_off_IX_d (Z80Context* ctx)
 static void SUB_A_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	char displacement = read8(ctx, ctx->PC++);
+	signed char displacement = read8(ctx, ctx->PC++);
 	BR.A = doArithmetic(ctx, read8(ctx, WR.IY + displacement), F1_SUB, F2_SUB);
 	
 }
@@ -8718,14 +8718,14 @@ static void XOR_off_HL (Z80Context* ctx)
 static void XOR_off_IX_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doXOR(ctx, read8(ctx, WR.IX + (char) read8(ctx, ctx->PC++)));
+	doXOR(ctx, read8(ctx, WR.IX + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
 static void XOR_off_IY_d (Z80Context* ctx)
 {
 	ctx->tstates += 5;
-	doXOR(ctx, read8(ctx, WR.IY + (char) read8(ctx, ctx->PC++)));
+	doXOR(ctx, read8(ctx, WR.IY + (signed char) read8(ctx, ctx->PC++)));
 }
 
 
