@@ -1,5 +1,5 @@
 SOURCES = z80.c
-FLAGS = -fPIC -Wall -ansi -g
+FLAGS = -fPIC -Wall -std=c89 -g
 
 force: clean all
 
@@ -7,7 +7,7 @@ all: libz80.so
 
 libz80.so: z80.h $(OBJS)
 	cd codegen && make opcodes
-	gcc $(FLAGS) -shared -o libz80.so $(SOURCES)
+	$(CC) $(FLAGS) -shared -o libz80.so $(SOURCES)
 
 install:
 	install -m 666 libz80.so /usr/lib

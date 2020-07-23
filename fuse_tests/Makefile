@@ -11,4 +11,4 @@ tests.expected: fuse_files/tests.expected
 	./generate_expected.sh $< $@
 
 coretest: coretest.c
-	gcc -Wall -ansi -g -o $@ $< ../libz80.so
+	$(CC) -Wall -std=c89 -g -o $@ $< ../libz80.so
