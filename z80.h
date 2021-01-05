@@ -26,6 +26,8 @@
 #ifndef _Z80_H_
 #define _Z80_H_
 
+#include <stddef.h>
+
 /* If this file is included inside a C++ program, use explicit C linkage for the following functions
  * to avoid name mangling and liker issues
  */
@@ -36,13 +38,12 @@ extern "C" {
 typedef unsigned short ushort;
 typedef unsigned char byte;
 
-
 /** Function type to emulate data read. */
-typedef byte (*Z80DataIn) 	(int param, ushort address);
+typedef byte (*Z80DataIn) 	(size_t param, ushort address);
 
 
 /** Function type to emulate data write. */
-typedef void (*Z80DataOut)	(int param, ushort address, byte data);
+typedef void (*Z80DataOut)	(size_t param, ushort address, byte data);
 
 
 /** 
@@ -93,11 +94,11 @@ typedef struct
 	
 	Z80DataIn	memRead;
 	Z80DataOut	memWrite;
-	int			memParam;
+	size_t		memParam;
 	
 	Z80DataIn	ioRead;
 	Z80DataOut	ioWrite;
-	int			ioParam;
+	size_t		ioParam;
 	
 	byte		halted;
 	unsigned	tstates;
