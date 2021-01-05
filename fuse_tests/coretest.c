@@ -39,24 +39,24 @@ static byte initial_memory[ 0x10000 ], memory[ 0x10000 ];
 
 static Z80Context context;
 
-static byte context_mem_read_callback(int param, ushort address)
+static byte context_mem_read_callback(size_t param, ushort address)
 {
   return memory[address];
 }
 
-static void context_mem_write_callback(int param, ushort address, byte data)
+static void context_mem_write_callback(size_t param, ushort address, byte data)
 {
   memory[address] = data;
 }
 
-static byte context_io_read_callback(int param, ushort address)
+static byte context_io_read_callback(size_t param, ushort address)
 {
   byte data = address >> 8;
   printf("PR %04x %02x\n", address, data);
   return data;
 }
 
-static void context_io_write_callback(int param, ushort address, byte data)
+static void context_io_write_callback(size_t param, ushort address, byte data)
 {
   printf("PW %04x %02x\n", address, data);
 }

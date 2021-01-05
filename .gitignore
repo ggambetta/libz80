@@ -2,3 +2,6 @@ codegen/mktables
 *.so
 *.d
 *.o
+fuse_tests/*.actual
+fuse_tests/*.expected
+
