@@ -1,0 +1,4 @@
+codegen/mktables
+*.so
+*.d
+*.o
