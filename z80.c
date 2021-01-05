@@ -24,7 +24,8 @@
  */
 
 #include "z80.h"
-#include "string.h"
+#include <string.h>
+#include <stdio.h>
 
 
 #define BR (ctx->R1.br)
