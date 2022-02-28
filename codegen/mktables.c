@@ -372,10 +372,11 @@ typedef enum
 	OP_NONE,
 	OP_BYTE,
 	OP_OFFSET,
-	OP_WORD	
+	OP_WORD,
+	OP_BYTE_BYTE
 } Z80OperandType;
 
-char* OpTypeName[] = { "OP_NONE", "OP_BYTE", "OP_OFFSET", "OP_WORD" };
+char* OpTypeName[] = { "OP_NONE", "OP_BYTE", "OP_OFFSET", "OP_WORD", "OP_BYTE_BYTE" };
 
 struct Z80OpcodeTable;
 
@@ -604,7 +605,14 @@ void scanOpcodes(FILE* opcodes, struct Z80OpcodeTable* mainTable)
 			}
 			else if ((tt == TT_N) | (tt == TT_D))
 			{
-				opType = OP_BYTE;
+				if (opType == OP_NONE)
+				{
+					opType = OP_BYTE;
+				}
+				else
+				{
+					opType = OP_BYTE_BYTE;
+				}
 			}
 			else if (tt == TT_E)
 			{
